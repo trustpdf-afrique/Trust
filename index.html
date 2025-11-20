@@ -34,30 +34,35 @@
             display: block;
         }
 
-        /* ONGLET BAS */
+        /* ONGLET BAS — version corrigée */
         .tabs {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: transparent;
+            background: white;          /* ✔ arrière-plan ajouté */
             display: flex;
             justify-content: space-around;
-            padding: 10px;
+            padding: 10px;              /* ✔ taille identique */
+            border-top: 2px solid #ccc; /* ✔ ligne au-dessus */
+            z-index: 9999;
         }
 
-        .tabs {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: white; /* <<< ARRIÈRE-PLAN BLANC */
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    border-top: 2px solid #ccc; /* <<< LIGNE AU-DESSUS */
-    z-index: 9999; /* toujours devant */
-}
+        .tab {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            margin: 0 8px;
+            color: white;
+            transition: transform 0.2s;
+            padding: 5px;
+        }
 
         .tab:hover {
             transform: scale(1.2);
@@ -199,7 +204,7 @@
     <!-- PROFIL -->
     <div id="profil" class="page">
         <h2>PROFILS JOUEURS</h2>
-        <!-- Tous tes joueurs ici, exactement comme tu les as donnés -->
+
         <article class="player-card">
             <div class="captain-badge">★</div>
             <div class="player-avatar"><img src="https://picsum.photos/200?1"></div>
@@ -208,6 +213,7 @@
             <div class="player-meta">Espagne</div>
             <div class="player-meta">Âge : 28</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?2"></div>
             <div class="player-name">Kylian Mbappé</div>
@@ -215,6 +221,7 @@
             <div class="player-meta">France</div>
             <div class="player-meta">Âge : 26</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?3"></div>
             <div class="player-name">Lionel Messi</div>
@@ -222,6 +229,7 @@
             <div class="player-meta">Argentine</div>
             <div class="player-meta">Âge : 36</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?4"></div>
             <div class="player-name">Cristiano Ronaldo</div>
@@ -229,6 +237,7 @@
             <div class="player-meta">Portugal</div>
             <div class="player-meta">Âge : 39</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?5"></div>
             <div class="player-name">Neymar Jr</div>
@@ -236,6 +245,7 @@
             <div class="player-meta">Brésil</div>
             <div class="player-meta">Âge : 33</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?6"></div>
             <div class="player-name">Kevin De Bruyne</div>
@@ -243,6 +253,7 @@
             <div class="player-meta">Belgique</div>
             <div class="player-meta">Âge : 33</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?7"></div>
             <div class="player-name">Erling Haaland</div>
@@ -250,6 +261,7 @@
             <div class="player-meta">Norvège</div>
             <div class="player-meta">Âge : 24</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?8"></div>
             <div class="player-name">Luka Modrić</div>
@@ -257,6 +269,7 @@
             <div class="player-meta">Croatie</div>
             <div class="player-meta">Âge : 38</div>
         </article>
+
         <article class="player-card">
             <div class="player-avatar"><img src="https://picsum.photos/200?9"></div>
             <div class="player-name">Mohamed Salah</div>
@@ -264,6 +277,7 @@
             <div class="player-meta">Égypte</div>
             <div class="player-meta">Âge : 32</div>
         </article>
+
     </div>
 
     <!-- MATCH -->
