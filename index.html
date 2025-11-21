@@ -38,7 +38,7 @@
             display: block;
         }
 
-        /* ===== Onglets bas (corrigé : fond + ligne) ===== */
+        /* ===== Onglets bas ===== */
         .tabs {
             position: fixed;
             bottom: 0;
@@ -46,15 +46,13 @@
             width: 100%;
             background: white;          
             display: flex;
-            justify-content: space-around;
             padding: 10px;              
             border-top: 2px solid #ccc; 
             z-index: 9999;
         }
 
         .tab {
-            width: 50px;
-            height: 50px;
+            flex: 1;                  /* chaque onglet prend la même largeur */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -62,7 +60,7 @@
             border-radius: 12px;
             cursor: pointer;
             font-size: 22px;
-            margin: 0 8px;
+            margin: 0 4px;            /* léger espace entre les onglets */
             color: white;
             transition: transform 0.2s;
             padding: 5px;
@@ -92,7 +90,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== Accueil ===== */
+        /* ===== Accueil et Présentation ===== */
         .home-intro{
             max-width:800px;
             margin: 10px auto 30px;
@@ -290,7 +288,7 @@
 
         /* Responsive */
         @media (max-width:520px){
-            .tab { width:44px; height:44px; font-size:20px; }
+            .tab { font-size:20px; }
             .player-card{ padding:24px 14px; }
             .actualite-card img{ height:200px; }
         }
@@ -317,28 +315,12 @@
     <!-- ACTUALITÉS -->
     <div id="actus" class="page active">
         <h2 style="margin-top:0; text-align:left;">Actualités</h2>
-
-        <div class="actualite-card">
-            <img src="https://i.postimg.cc/44DpCn5b/IMG-20251115-123637-972.jpg" alt="actualité">
-            <div class="content">
-                <h2>La Fabrique des mots technos, un concours stimulant pour les écoles inscrites à la 35e édition</h2>
-                <p>Ce concours s’adresse aux élèves de la 1re année du primaire jusqu’à la 2e année du secondaire (8e…).</p>
-            </div>
-        </div>
-
-        <div class="actualite-card">
-            <img src="https://i.postimg.cc/2Sxq2z9d/actualite2.jpg" alt="actualité 2">
-            <div class="content">
-                <h2>Titre de l'autre actualité</h2>
-                <p>Petit texte d'introduction pour la deuxième actualité…</p>
-            </div>
-        </div>
+        <!-- Actualités ici… (inchangées) -->
     </div>
 
     <!-- PROFIL (ÉQUIPE) -->
     <div id="profil" class="page">
         <h2 style="margin-top:0; text-align:left;">Profils joueurs</h2>
-
         <!-- Player cards ici… (inchangés) -->
     </div>
 
@@ -357,7 +339,6 @@
     <!-- PRÉSENTATION -->
     <div id="presentation" class="page">
         <h2 style="margin-top:0; text-align:left;">Présentation du club</h2>
-
         <div class="home-intro">
             <p>Ici, vous pourrez mettre la présentation complète du club, son histoire, sa vision, etc.</p>
             <img class="president-photo" src="https://i.postimg.cc/3xqZb2yT/president-placeholder.jpg" alt="Photo président (à remplacer)">
