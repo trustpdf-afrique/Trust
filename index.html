@@ -22,7 +22,7 @@ body{
   margin:0;
   font-family:Arial, sans-serif;
   background:var(--page-bg);
-  padding-bottom:90px; /* espace pour onglets */
+  padding-bottom:90px;
 }
 
 /* EN-TÊTE */
@@ -179,7 +179,9 @@ body{
   border-radius:10px;
   box-shadow:0 2px 4px rgba(0,0,0,0.25);
 }
-  .table-container{
+
+/* --- BUTEURS --- */
+.table-container{
     margin:20px auto;
     background:white;
     border-radius:15px;
@@ -188,18 +190,15 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
     animation: pop 0.6s ease-in-out;
 }
-
 @keyframes pop {
     from{transform:scale(0.9); opacity:0;}
     to{transform:scale(1); opacity:1;}
 }
-
 table{
     width:100%;
     border-collapse:collapse;
     font-size:18px;
 }
-
 th{
     background:#0094ff;
     color:white;
@@ -208,14 +207,12 @@ th{
     font-size:20px;
     border-radius:10px 10px 0 0;
 }
-
 td{
     padding:12px;
     text-align:center;
     border-bottom:1px solid #ddd;
     transition:0.3s;
 }
-
 tr:hover td{
     background:#eaf4ff;
     transform:scale(1.02);
@@ -277,55 +274,6 @@ tr:hover td{
     <div class="player-meta">Argentine</div>
     <div class="player-meta">Âge : 36</div>
   </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?4" alt="Cristiano Ronaldo"></div>
-    <div class="player-name">Cristiano Ronaldo</div>
-    <div class="player-meta">Al Nassr · Attaquant</div>
-    <div class="player-meta">Portugal</div>
-    <div class="player-meta">Âge : 39</div>
-  </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?5" alt="Neymar Jr"></div>
-    <div class="player-name">Neymar Jr</div>
-    <div class="player-meta">Al-Hilal · Attaquant</div>
-    <div class="player-meta">Brésil</div>
-    <div class="player-meta">Âge : 33</div>
-  </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?6" alt="Kevin De Bruyne"></div>
-    <div class="player-name">Kevin De Bruyne</div>
-    <div class="player-meta">Man City · Milieu</div>
-    <div class="player-meta">Belgique</div>
-    <div class="player-meta">Âge : 33</div>
-  </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?7" alt="Erling Haaland"></div>
-    <div class="player-name">Erling Haaland</div>
-    <div class="player-meta">Man City · Attaquant</div>
-    <div class="player-meta">Norvège</div>
-    <div class="player-meta">Âge : 24</div>
-  </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?8" alt="Luka Modrić"></div>
-    <div class="player-name">Luka Modrić</div>
-    <div class="player-meta">Real Madrid · Milieu</div>
-    <div class="player-meta">Croatie</div>
-    <div class="player-meta">Âge : 38</div>
-  </article>
-
-  <article class="player-card">
-    <div class="player-avatar"><img src="https://picsum.photos/200?9" alt="Mohamed Salah"></div>
-    <div class="player-name">Mohamed Salah</div>
-    <div class="player-meta">Liverpool · Attaquant</div>
-    <div class="player-meta">Égypte</div>
-    <div class="player-meta">Âge : 32</div>
-  </article>
-
 </div>
 
 <!-- MATCHS -->
@@ -337,28 +285,22 @@ tr:hover td{
 <!-- BUTEURS -->
 <div id="buteurs" class="page">
   <h2>BUTEURS</h2>
-  <p>Ici nous allons mettre la liste des meilleurs buteurs.</p>
-</div>
-  <!-- BUTEURS -->
-<div id="buteurs" class="page">
-    <h2>BUTEURS</h2>
-
-    <div class="table-container">
-        <table>
-            <tr>
-                <th>Joueur</th>
-                <th>Buts</th>
-            </tr>
-            <tr><td>Mbappé</td><td>0</td></tr>
-            <tr><td>Messi</td><td>0</td></tr>
-            <tr><td>Ronaldo</td><td>0</td></tr>
-            <tr><td>Neymar</td><td>0</td></tr>
-            <tr><td>Modric</td><td>0</td></tr>
-            <tr><td>Salah</td><td>0</td></tr>
-            <tr><td>Benzema</td><td>0</td></tr>
-            <tr><td>Haaland</td><td>0</td></tr>
-        </table>
-    </div>
+  <div class="table-container">
+      <table>
+          <tr>
+              <th>Joueur</th>
+              <th>Buts</th>
+          </tr>
+          <tr><td>Mbappé</td><td>0</td></tr>
+          <tr><td>Messi</td><td>0</td></tr>
+          <tr><td>Ronaldo</td><td>0</td></tr>
+          <tr><td>Neymar</td><td>0</td></tr>
+          <tr><td>Modric</td><td>0</td></tr>
+          <tr><td>Salah</td><td>0</td></tr>
+          <tr><td>Benzema</td><td>0</td></tr>
+          <tr><td>Haaland</td><td>0</td></tr>
+      </table>
+  </div>
 </div>
 
 <!-- TABS BAS -->
