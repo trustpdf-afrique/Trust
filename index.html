@@ -2,27 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DEEP WORK ZAKARIA</title>
+<link rel="manifest" href="data:application/json,{%22name%22:%22Deep%20Work%20Zakaria%22,%22short_name%22:%22DeepWork%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230f172a%22,%22theme_color%22:%22%230f172a%22}">
+<meta name="theme-color" content="#0f172a">
 <style>
-body{
-  margin:0;font-family:Arial,Helvetica,sans-serif;
-  background:#0f172a;color:#fff;
-  display:flex;justify-content:center;align-items:center;
-  min-height:100vh;
-  touch-action: pan-x pan-y;
-  overscroll-behavior: none;
-}
-.app{
-  background:#020617;width:100%;max-width:460px;
-  border-radius:20px;padding:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.7)
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;touch-action: pan-x pan-y;overscroll-behavior: none;}
+.app{background:#020617;width:100%;max-width:460px;border-radius:20px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.7);}
 h1{text-align:center;color:#38bdf8;margin:0;font-size:24px}
-#motivation{text-align:center;font-size:14px;
-background:linear-gradient(90deg,#fbbf24,#38bdf8,#f43f5e);
--webkit-background-clip:text;-webkit-text-fill-color:transparent;
-font-weight:bold;margin-bottom:10px}
+#motivation{text-align:center;font-size:14px;background:linear-gradient(90deg,#fbbf24,#38bdf8,#f43f5e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold;margin-bottom:10px}
 .timer{font-size:52px;text-align:center;color:#22c55e;font-weight:bold}
 .info{text-align:center;color:#38bdf8;font-size:13px;margin-bottom:6px}
 .phase{background:#111827;border-radius:14px;padding:12px;margin-bottom:10px}
@@ -37,7 +25,6 @@ font-weight:bold;margin-bottom:10px}
 #dayBox{text-align:center;font-size:16px;background:#1e293b;padding:8px 12px;border-radius:12px;margin-bottom:12px;font-weight:bold;transition:0.3s;}
 </style>
 </head>
-
 <body>
 <div class="app">
 
@@ -98,32 +85,25 @@ const phases=[
 ];
 
 let i=0,time=0,run=false;
-let stats=JSON.parse(localStorage.getItem("dwStats"))||{
- totalMinutes:0,streak:0,lastDay:null,history:{}
-};
+let stats=JSON.parse(localStorage.getItem("dwStats"))||{totalMinutes:0,streak:0,lastDay:null,history:{}};
 
 /* ------------------ UI ------------------ */
 function updateUI(){
  document.getElementById("totalHours").innerText=(stats.totalMinutes/60).toFixed(1)+" h";
  document.getElementById("streak").innerText=stats.streak+" jours";
- updateBadges();updateHistory();
- updateDayBox();
+ updateBadges();updateHistory();updateDayBox();
 }
+
 function updateDayBox(){
  const d=new Date();
  const dayNames=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
  let displayDay = dayNames[d.getDay()];
  const dayBox = document.getElementById("dayBox");
- if(d.getDay()===6){
-     displayDay += " (Repos)";
-     dayBox.style.background="#4b5563";
- } else {
-     dayBox.style.background="#22c55e";
- }
+ if(d.getDay()===6){ displayDay += " (Repos)"; dayBox.style.background="#4b5563"; }
+ else{ dayBox.style.background="#22c55e"; }
  dayBox.innerText = "📆 " + displayDay;
 }
 
-/* ------------------ BADGES ------------------ */
 function updateBadges(){
  const b=document.getElementById("badges");b.innerHTML="";
  if(stats.streak>=90)b.innerHTML+="<div class='badge'>🥇 Légende</div>";
@@ -131,7 +111,6 @@ function updateBadges(){
  if(stats.streak>=7)b.innerHTML+="<div class='badge'>🥉 Alpha</div>";
 }
 
-/* ------------------ HISTORIQUE ------------------ */
 function updateHistory(){
  const h=document.getElementById("history");h.innerHTML="";
  Object.keys(stats.history).slice(-6).forEach(d=>{
@@ -152,7 +131,9 @@ function startPhase(){
  document.getElementById("status").innerText="▶️ En cours";
  run=true;
 }
+
 function nextPhase(){i++;if(i<phases.length) startPhase();else finishSession();}
+
 function finishSession(){
  run=false;
  const recap=prompt("Écris ce que tu as retenu :");
@@ -173,106 +154,39 @@ function finishSession(){
 
 /* ------------------ HARDCORE ------------------ */
 document.addEventListener("visibilitychange",()=>{
- if(run && document.hidden){
-  run=false;
-  alert("❌ Session annulée (Hardcore)");
- }
+ if(run && document.hidden){ run=false; alert("❌ Session annulée (Hardcore)"); }
 });
 
 /* ------------------ LOOP ------------------ */
 setInterval(()=>{
  if(run){
-  if(time>0){
-   time--;
-   document.getElementById("timer").innerText=
-   Math.floor(time/60)+":"+String(time%60).padStart(2,"0");
-  }else nextPhase();
+  if(time>0){ time--; document.getElementById("timer").innerText=Math.floor(time/60)+":"+String(time%60).padStart(2,"0"); }
+  else nextPhase();
  }
 },1000);
 
-/* ------------------ CONGÉS ------------------ */
-function checkVacation(){
-  const now = new Date();
-  const startInput = document.getElementById("vacationStart").value;
-  const endInput = document.getElementById("vacationEnd").value;
-  const statusBox = document.getElementById("vacationStatus");
-  if(startInput && endInput){
-    const startDate = new Date(startInput);
-    const endDate = new Date(endInput);
-    if(now >= startDate && now <= endDate){
-      run=false;
-      document.getElementById("status").innerText = "⏸️ Congés activés, toutes les sessions sont suspendues.";
-      statusBox.innerText = "📌 Congés actifs du "+startInput+" au "+endInput;
-      return true;
-    } else {
-      statusBox.innerText = "";
-      return false;
-    }
-  }
-  statusBox.innerText = "";
-  return false;
-}
-setInterval(()=>{ if(!checkVacation()){ /* rien */ } },60000);
-checkVacation();
-
-/* ------------------ GESTES PINCH ------------------ */
-document.addEventListener('touchmove', function(e){ if(e.scale!==undefined && e.scale!==1) e.preventDefault();},{passive:false});
-document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
-document.addEventListener('gesturechange', function(e){ e.preventDefault(); });
-document.addEventListener('gestureend', function(e){ e.preventDefault(); });
-
-/* ------------------ CLIGNOTEMENT CASE DU JOUR ------------------ */
-function blinkDayBox(){
-  const dayBox = document.getElementById("dayBox");
-  if(!dayBox) return;
-  const now = new Date();
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  if((hour===21 || hour===22) && minute<15){
-    if(!dayBox.classList.contains("blink")){
-      dayBox.classList.add("blink");
-      dayBox.style.transition="0.5s";
-      let on=true;
-      const interval = setInterval(()=>{
-        if(!dayBox.classList.contains("blink")){
-          dayBox.style.background="#22c55e";
-          clearInterval(interval);
-          return;
-        }
-        dayBox.style.background = on?"#fbbf24":"#22c55e";
-        on=!on;
-      },500);
-    }
-  } else {
-    dayBox.classList.remove("blink");
-    dayBox.style.background="#22c55e";
-  }
-}
-setInterval(blinkDayBox,1000);
-
-/* ------------------ DÉMARRAGE IMMÉDIAT + NOTIFICATION ------------------ */
+/* ------------------ START IMMEDIATEMENT ------------------ */
 function startNow(){
-  // Notification
-  if(Notification.permission === "granted"){
-    new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !");
-  } else if(Notification.permission !== "denied"){
-    Notification.requestPermission().then(p => {
-      if(p === "granted") new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !");
-    });
+  if(Notification.permission === "granted"){ new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !"); }
+  else if(Notification.permission !== "denied"){
+    Notification.requestPermission().then(p=>{if(p==="granted") new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !");});
   }
   alert("🧠 Deep Work Zakaria ! Session démarrée maintenant !");
-  
-  // Démarrage automatique de la session
-  if(!run){
-    i = 0; // première phase
-    startPhase();
-  }
+  if(!run){ i=0; startPhase();}
 }
 
-// Appel immédiat
-startNow();
-
+startNow(); // Démarre tout de suite
 updateUI();
+
+/* ------------------ SERVICE WORKER INLINE ------------------ */
+if('serviceWorker' in navigator){
+  const swBlob = new Blob([`
+self.addEventListener('install', e => { self.skipWaiting(); });
+self.addEventListener('activate', e => {});
+self.addEventListener('fetch', e => { e.respondWith(fetch(e.request).catch(() => new Response('Offline'))); });
+  `], {type:'application/javascript'});
+  navigator.serviceWorker.register(URL.createObjectURL(swBlob));
+}
 </script>
 </body>
 </html>
