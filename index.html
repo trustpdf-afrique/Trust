@@ -165,18 +165,44 @@ setInterval(()=>{
  }
 },1000);
 
-/* ------------------ START IMMEDIATEMENT ------------------ */
-function startNow(){
-  if(Notification.permission === "granted"){ new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !"); }
-  else if(Notification.permission !== "denied"){
-    Notification.requestPermission().then(p=>{if(p==="granted") new Notification("🧠 Deep Work Zakaria ! Session démarrée maintenant !");});
+/* ------------------ CONGÉS ------------------ */
+function checkVacation(){
+  const now = new Date();
+  const startInput = document.getElementById("vacationStart").value;
+  const endInput = document.getElementById("vacationEnd").value;
+  const statusBox = document.getElementById("vacationStatus");
+  if(startInput && endInput){
+    const startDate = new Date(startInput);
+    const endDate = new Date(endInput);
+    if(now >= startDate && now <= endDate){
+      run=false;
+      document.getElementById("status").innerText = "⏸️ Congés activés, toutes les sessions sont suspendues.";
+      statusBox.innerText = "📌 Congés actifs du "+startInput+" au "+endInput;
+      return true;
+    } else { statusBox.innerText = ""; return false; }
   }
-  alert("🧠 Deep Work Zakaria ! Session démarrée maintenant !");
+  statusBox.innerText = "";
+  return false;
+}
+setInterval(()=>{ checkVacation(); },60000);
+
+/* ------------------ START À 15h15 ------------------ */
+function startAt1515(){
+  const now = new Date();
+  const target = new Date();
+  target.setHours(15,15,0,0);
+  const ms = target - now;
+  if(ms <= 0){startNow();}
+  else{setTimeout(startNow, ms);}
+}
+function startNow(){
+  if(Notification.permission === "granted"){ new Notification("🧠 Deep Work Zakaria ! Session démarrée à 15h15 !"); }
+  else if(Notification.permission !== "denied"){
+    Notification.requestPermission().then(p=>{if(p==="granted") new Notification("🧠 Deep Work Zakaria ! Session démarrée à 15h15 !");});
+  }
+  alert("🧠 Deep Work Zakaria ! Session démarrée à 15h15 !");
   if(!run){ i=0; startPhase();}
 }
-
-startNow(); // Démarre tout de suite
-updateUI();
 
 /* ------------------ SERVICE WORKER INLINE ------------------ */
 if('serviceWorker' in navigator){
@@ -187,6 +213,9 @@ self.addEventListener('fetch', e => { e.respondWith(fetch(e.request).catch(() =>
   `], {type:'application/javascript'});
   navigator.serviceWorker.register(URL.createObjectURL(swBlob));
 }
+
+startAt1515();
+updateUI();
 </script>
 </body>
 </html>
